@@ -1,0 +1,36 @@
+# The following code to create a dataframe and remove duplicated rows is always executed and acts as a preamble for your script: 
+
+# dataset = pd.DataFrame(FamilyDescription, AvgPolCol)
+# dataset = dataset.drop_duplicates()
+
+# Paste or type your script code here:
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+
+# Create an empty matrix to store the relative ages
+n = len(dataset)
+relative_pol = pd.DataFrame(index=dataset['FamilyDescription'], columns=dataset['FamilyDescription'])
+
+# Create the relative ages
+relative_pol = []
+for i in range(len(dataset)):
+    row = []
+    for j in range(len(dataset)):
+        row.append(dataset.iloc[j, 1] / dataset.iloc[i, 1])
+    relative_pol.append(row)
+
+
+
+# Create the heatmap
+sns.heatmap(relative_pol, annot=True,annot_kws={"size": 20}, xticklabels=dataset["FamilyDescription"], yticklabels=dataset["FamilyDescription"], cbar=False, cmap="coolwarm", alpha = 0.9)
+
+
+
+plt.xticks(rotation=0)
+plt.yticks(rotation=90)
+plt.tick_params(axis='both', which='major', labelsize=10, labelbottom = False, bottom=False, top = False, labeltop=True)
+
+
+plt.show()
