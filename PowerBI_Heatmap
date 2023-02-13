@@ -8,7 +8,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 
-
 # Create an empty matrix to store the relative ages
 n = len(dataset)
 relative_pol = pd.DataFrame(index=dataset['FamilyDescription'], columns=dataset['FamilyDescription'])
@@ -21,16 +20,20 @@ for i in range(len(dataset)):
         row.append(dataset.iloc[j, 1] / dataset.iloc[i, 1])
     relative_pol.append(row)
 
-
+fig, ax = plt.subplots(figsize=(20, 11.2))
 
 # Create the heatmap
-sns.heatmap(relative_pol, annot=True,annot_kws={"size": 20}, xticklabels=dataset["FamilyDescription"], yticklabels=dataset["FamilyDescription"], cbar=False, cmap="coolwarm", alpha = 0.9)
+sns.heatmap(relative_pol, annot=True,annot_kws={"size": 12}, xticklabels=dataset["FamilyDescription"], yticklabels=dataset["FamilyDescription"], cbar=False, cmap="coolwarm", alpha = 0.9, linewidths=1)
 
+# Moves Lables to the top of the heatmap
+plt.tick_params(axis='both', which='major', labelsize=10, labelbottom = False, bottom=False, top = True, labeltop=True)
 
+# Rotates lables
+plt.xticks(rotation=-90)
+plt.yticks(rotation=0)
 
-plt.xticks(rotation=0)
-plt.yticks(rotation=90)
-plt.tick_params(axis='both', which='major', labelsize=10, labelbottom = False, bottom=False, top = False, labeltop=True)
+#Makes the heatmap fit the canvas and adds a margin on the right side.
+plt.tight_layout(rect=[0, 0, 0.87, 1])
 
 
 plt.show()
