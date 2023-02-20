@@ -1,6 +1,6 @@
 Base:
 
-2021 std.s: 
+2020 std.s: 
 #Matrix:
 https://app.powerbi.com/groups/me/apps/77d2b5da-096c-4cc5-96a0-71ce29bfad1d/reports/9920eda4-9977-4841-b1c6-4024220c07f6/ReportSection27dcd8fabe865688915e?filter=tbl_Sample/SampleId in ('FP-339-1', 'FP-356-1', 'FP-356-2', 'FP-356-3', 'FP-339-2', 'FP-356-4', 'FP-356-5', 'FP-331-9', 'FP-356-6', 'FP-356-7', 'FP-331-11', 'FP-356-8', 'FP-356-9', 'FP-331-14', 'FP-356-10', 'FP-356-11', 'FP-356-12', 'FP-356-13', 'FP-356-14', 'FP-356-15', 'FP-356-16', 'FP-356-17', 'FP-356-18', 'FP-356-19', 'FP-356-20', 'FP-331-19', 'FP-356-21', 'FP-331-21', 'FP-356-22', 'FP-356-23', 'FP-331-23', 'FP-342-1')
 #Samples:
@@ -8,5 +8,8 @@ https://app.powerbi.com/groups/me/apps/77d2b5da-096c-4cc5-96a0-71ce29bfad1d/repo
 #Tests:
 https://app.powerbi.com/groups/me/apps/77d2b5da-096c-4cc5-96a0-71ce29bfad1d/reports/9920eda4-9977-4841-b1c6-4024220c07f6/ReportSection01c6f390e34e7d6600be?filter=tbl_Sample/SampleId in ('FP-339-1', 'FP-356-1', 'FP-356-2', 'FP-356-3', 'FP-339-2', 'FP-356-4', 'FP-356-5', 'FP-331-9', 'FP-356-6', 'FP-356-7', 'FP-331-11', 'FP-356-8', 'FP-356-9', 'FP-331-14', 'FP-356-10', 'FP-356-11', 'FP-356-12', 'FP-356-13', 'FP-356-14', 'FP-356-15', 'FP-356-16', 'FP-356-17', 'FP-356-18', 'FP-356-19', 'FP-356-20', 'FP-331-19', 'FP-356-21', 'FP-331-21', 'FP-356-22', 'FP-356-23', 'FP-331-23', 'FP-342-1')
 
-2020 std.s:
-https://app.powerbi.com/groups/me/apps/77d2b5da-096c-4cc5-96a0-71ce29bfad1d/reports/9920eda4-9977-4841-b1c6-4024220c07f6/ReportSection27dcd8fabe865688915e?filter=tbl_Sample/Leg_SampleId in ('4072-91', '4073-96', '4073-97', '4073-98', '4072-93', '4074-00', '4074-01', '4072-43', '4074-02', '4074-03', '4072-45', '4074-04', '4074-05', '4072-47', '4074-06', '4074-07', '4074-08')
+2019 std.s:
+https://app.powerbi.com/groups/me/apps/77d2b5da-096c-4cc5-96a0-71ce29bfad1d/reports/9920eda4-9977-4841-b1c6-4024220c07f6/ReportSection27dcd8fabe865688915e?filter=tbl_Sample/Leg_SampleId in ('4072-91', '4073-96', '4073-97', '4073-98', '4072-93', '4074-00', '4074-01', '4072-43', '4074-02', '4074-03', '4072-45', '4074-04', '4074-05', '4072-47', '4074-06', '4074-07', '4074-08', '4073-99')
+
+2021 std.s:
+https://app.powerbi.com/groups/me/apps/77d2b5da-096c-4cc5-96a0-71ce29bfad1d/reports/9920eda4-9977-4841-b1c6-4024220c07f6/ReportSection01c6f390e34e7d6600be?filter=tbl_Sample/SeriesCode eq 295
