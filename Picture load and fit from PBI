@@ -1,0 +1,81 @@
+Sub LoadAndFitPictures()
+    'PURPOSE: Load and fit all pictures based on URLs
+    Dim i As Long, j As Long, v As String, PicWtoHRatio As Single, CellWtoHRatio As Single, shp As Shape, ws As Worksheet, fRow As Long, fCol As Long, lRow As Long, lCol As Long
+    Set ws = ActiveSheet
+    
+    Application.ScreenUpdating = False
+    
+    fCol = ws.Cells.Find("https", SearchOrder:=xlByColumns, SearchDirection:=xlLast).Column
+    fRow = ws.Cells.Find("https", SearchOrder:=xlByRows, SearchDirection:=xlLast).Row
+    lRow = ws.Cells.Find("https", SearchOrder:=xlByRows, SearchDirection:=xlPrevious).Row
+    lCol = ws.Cells.Find("*", SearchOrder:=xlByColumns, SearchDirection:=xlPrevious).Column
+
+
+    For j = fCol To lCol
+        For i = fRow To lRow
+    
+        With ws
+            .Rows(i).RowHeight = 320
+            .Columns(j).ColumnWidth = 45
+            With Cells(i, j)
+            CellWtoHRatio = .Width / .RowHeight
+            End With
+        End With
+            v = Cells(i, j).Value
+            On Error Resume Next
+            Cells(i, j).Select
+            Cells(i, j).WrapText = True
+            With ws.Pictures
+            .Insert(v).Name = "photo" & i & j
+            End With
+                
+            With ws.Shapes("photo" & i & j)
+                PicWtoHRatio = .Width / .Height
+                .LockAspectRatio = msoFalse
+                
+                If PicWtoHRatio < 1 Then
+                
+                    .Width = Cells(i, j).Width
+                    .Height = Cells(i, j).Height
+                    .Left = Cells(i, j).Left
+                    .Top = Cells(i, j).Top
+                
+                Else
+                
+                    .Width = Cells(i, j).Height
+                    .Height = Cells(i, j).Width
+                    .Left = Cells(i, j).Left - (.Width - .Height) / 2
+                    .Top = Cells(i, j).Top + (.Width - .Height) / 2
+                
+                End If
+                
+            End With
+                
+            
+        
+        Next i
+     Next j
+     
+     Application.ScreenUpdating = True
+End Sub
+
+Sub DeleteAllShapes()
+'PURPOSE: Remove All Shape Objects From The Active Worksheet
+
+Dim shp As Shape
+
+For Each shp In ActiveSheet.Shapes
+   shp.Delete
+Next shp
+
+End Sub
+
+
+
+
+
+
+
+
+
+
