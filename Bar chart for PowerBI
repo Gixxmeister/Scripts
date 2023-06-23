@@ -1,0 +1,59 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Set the figure size and make the background transparent
+plt.figure(figsize=(25, 6.9), dpi=500, facecolor='none')
+
+color_pol = (0.624, 0.169, 0.133, 0.7) 
+color_ll = (0.851, 0.588, 0.580, 0.7)  
+
+# Plot the stacked bar chart with custom colors
+pol_bars = plt.bar(dataset['TestStripe'], dataset['AvgPolCol'], label='AvgPolCol', color=color_pol)
+ll_bars = plt.bar(dataset['TestStripe'], dataset['AvgLLCol'], bottom=dataset['AvgPolCol'], label='AvgLLCol', color=color_ll)
+
+# Display the values for the AvgPolCol bars
+for bar in pol_bars:
+    height = int(bar.get_height())
+    plt.text(bar.get_x() + bar.get_width() / 2, height / 2, str(height), ha='center', va='center', color='white')
+
+# Display the values for the AvgLLCol bars
+for bar1, bar2 in zip(pol_bars, ll_bars):
+    height1 = int(bar1.get_height())
+    height2 = int(bar2.get_height())
+    total_height = height1 + height2
+    plt.text(bar2.get_x() + bar2.get_width() / 2, total_height - height2 / 2, str(height2), ha='center', va='center', color='white')
+
+# Add labels and title with white text color
+plt.xlabel('TID-Stripe No.', color='white',  fontsize=16)
+plt.ylabel('Polishing (µm)', color='white', fontsize=16)
+plt.title('Polishing', color='white',  fontsize=20)
+
+# Adjust the margins
+plt.subplots_adjust(left=0.03, right=0.97, top=0.9, bottom=0.15)
+
+# Set the x-axis tick labels
+plt.xticks(dataset['TestStripe'], rotation=90, fontsize=12)
+
+# Set the y-axis tick labels with larger font size
+plt.yticks(fontsize=12)
+
+# Set the color of tick labels
+plt.tick_params(axis='x', colors='white')
+plt.tick_params(axis='y', colors='white')
+
+legend = plt.legend()
+for text in legend.get_texts():
+    text.set_color('white')
+    legend.get_frame().set_alpha(0.0)  # Make the legend transparent
+
+# Set the color of the plot frame
+plt.gca().spines['bottom'].set_color('white')
+plt.gca().spines['top'].set_color('white')
+plt.gca().spines['left'].set_color('white')
+plt.gca().spines['right'].set_color('white')
+
+# Set the color of the plot background
+plt.gca().set_facecolor('none')
+
+# Show the chart
+plt.show()
