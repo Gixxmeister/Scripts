@@ -21,7 +21,7 @@ width_scale = total_width / fixed_height
 figheight = 5
 
 
-plt.figure(figsize=(30, figheight), dpi=500, facecolor='none')
+plt.figure(figsize=(30, figheight), dpi=500, facecolor='#335183')
 gs = gridspec.GridSpec(2, len(imgs), height_ratios=[1, 0.3],  width_ratios=[img.shape[1] / width_scale for img in rescaled_imgs])
 
 for i, img in enumerate(rescaled_imgs):
