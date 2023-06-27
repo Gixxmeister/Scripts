@@ -1,0 +1,37 @@
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+import numpy as np
+import pandas as pd
+import cv2
+
+img_paths = [r"C:\Users\trondg\Jotun A S\Nexus - Dokumenter\BKP\Test ID-{}\Fouling analysis\Stripes\Stripe {}.png".format(test_id, stripe_id) for test_id, stripe_id in zip(dataset['TestId'], dataset['StripeId'])]
+#img_paths = [f"PowerBI_test/Fouling analysis/Stripes/Stripe {stripe_id}.png" for stripe_id in dataset['StripeId']]
+#img_url = [f"https://jotun.sharepoint.com/sites/Nexus/Shared%20Documents/Forms/AllItems.aspx?id=/sites/Nexus/Shared%20Documents/BKP/Test%20ID-" + str(dataset['TestId'][i]) + "/Fouling%20analysis/Stripes/Stripe%20" + str(dataset['StripeId'][i]) + ".png".format(test_id, stripe_id) for test_id, stripe_id in zip(dataset['TestId'], dataset['StripeId'])]
+imgs = [cv2.imread(img_path) for img_path in img_paths if cv2.imread(img_path) is not None]
+test_stripes = dataset['TestStripe'].tolist()[:len(imgs)]
+
+num_stripes = len(imgs)
+fixed_height = 300
+
+rescaled_imgs = [cv2.resize(img, (int(fixed_height * img.shape[1] / img.shape[0]), fixed_height)) for img in imgs]
+
+total_width = sum(img.shape[1] for img in rescaled_imgs)
+width_scale = total_width / fixed_height
+
+figheight = 5
+
+
+plt.figure(figsize=(30, figheight), dpi=500, facecolor='none')
+gs = gridspec.GridSpec(2, len(imgs), height_ratios=[1, 0.3],  width_ratios=[img.shape[1] / width_scale for img in rescaled_imgs])
+
+for i, img in enumerate(rescaled_imgs):
+    ax_image = plt.subplot(gs[0, i])
+    ax_image.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    ax_image.axis('off')
+
+    ax_title = plt.subplot(gs[1, i])
+    ax_title.axis('off')
+    ax_title.text(0.5, 0.3, test_stripes[i], color='white' , fontsize=16, ha='center', rotation=90)
+
+plt.subplots_adjust(left=0.003, right=0.997, top=0.97, bottom=0.03, hspace=0.0)
+plt.show()
